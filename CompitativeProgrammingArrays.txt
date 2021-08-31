@@ -1,0 +1,137 @@
+1) Given a binary array nums, return the maximum number of consecutive 1's in the array.
+===>>>>
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int count = 0;
+        int temp = 0;
+        for(auto num : nums){
+            if(num == 1){
+                temp += 1;
+            }else{
+                if(temp > count){
+                    count  = temp;
+                }
+                temp = 0;
+
+            }
+        }
+        if(temp > count){
+            count = temp;
+        }
+        return count;
+    }
+};
+
+*******************************************************************************************************************************************************************
+2) Given an array nums of integers, return how many of them contain an even number of digits.
+	Example :
+	Input: nums = [12,345,2,6,7896]
+	Output: 2
+	Explanation: 
+	12 contains 2 digits (even number of digits). 
+	345 contains 3 digits (odd number of digits). 
+	2 contains 1 digit (odd number of digits). 
+	6 contains 1 digit (odd number of digits). 
+	7896 contains 4 digits (even number of digits). 
+	Therefore only 12 and 7896 contain an even number of digits.
+
+===>>>>>
+class Solution {
+public:
+    int countDigit(int num){
+        int count = 0;
+        while(num > 0){
+            count++;
+            num /= 10;
+        }
+        return count;
+    }
+    int findNumbers(vector<int>& nums) {
+        int evenDigitCount = 0;
+        for(auto num : nums){
+            if(countDigit(num) % 2 == 0){
+                evenDigitCount++;
+            }
+        }
+        return evenDigitCount;
+    }
+};
+
+*******************************************************************************************************************************************************************
+3)Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+
+Example 1:
+
+Input: nums = [-4,-1,0,3,10]
+Output: [0,1,9,16,100]
+Explanation: After squaring, the array becomes [16,1,0,9,100].
+After sorting, it becomes [0,1,9,16,100].
+
+===>>>>
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+        vector<int> squareArray;
+        for(auto num : nums){
+            squareArray.push_back(num * num);
+        }
+        
+        sort(squareArray.begin(), squareArray.end());		//sorting vector == > sort(vector.begin( ) , vector.end( ) );
+        return squareArray;
+    }
+};
+
+*******************************************************************************************************************************************************************
+4)Inserting element at position in array : 
+      A) At end
+	// Declare an integer array of 6 elements
+	int intArray = new int[6];
+	int length = 0;
+
+	// Add 3 elements to the Array
+	for (int i = 0; i < 3; i++) {
+ 	   intArray[length] = i;
+  	  length++;
+	}
+	
+      B)At start :
+	// First, we will have to create space for a new element.
+	// We do that by shifting each element one index to the right.
+	// This will firstly move the element at index 3, then 2, then 1, then finally 0.
+	// We need to go backwards to avoid overwriting any elements.
+	for (int i = 3; i >= 0; i--) {
+	    intArray[i + 1] = intArray[i];
+	}
+
+	// Now that we have created space for the new element,
+	// we can insert it at the beginning.
+	intArray[0] = 20;
+
+      C)At index :
+	// Say we want to insert the element at index ind.
+	// First, we will have to create space for the new element.
+	int ind = 2;
+	for (int i = 4; i >= ind; i--)
+	{
+    	// Shift each element one position to the right.
+	    intArray[i + 1] = intArray[i];
+	}
+
+	// Now that we have created space for the new element,
+	// we can insert it at the required index.
+	intArray[ind] = 30;
+
+*******************************************************************************************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
